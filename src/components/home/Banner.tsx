@@ -1,3 +1,4 @@
+"use client";
 import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 
@@ -9,8 +10,7 @@ const Banner: FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full min-h-screen flex items-center justify-center bg-black">
-      {/* 背景圖片 - Next.js Image */}
+    <div className="relative w-full min-h-screen flex items-center justify-center bg-black mb-16">
       {imageUrl && (
         <Image
           src={imageUrl}
@@ -22,7 +22,6 @@ const Banner: FC = () => {
         />
       )}
 
-      {/* 內容層 - 置中顯示文字 */}
       <div className="absolute z-10 text-white text-center">
         <h1 className="text-4xl md:text-6xl font-bold">Welcome to My Site</h1>
         <p className="mt-4 text-lg md:text-2xl">

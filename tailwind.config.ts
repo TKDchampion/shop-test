@@ -8,7 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        h2: "21px",
+      },
       colors: {
+        current: "currentColor",
+        primary: "#997a3b",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },

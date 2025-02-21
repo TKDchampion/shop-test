@@ -23,13 +23,10 @@ const HeaderSwiper: FC = () => {
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           slidesPerView={1}
-          //   pagination={{ clickable: true }}
           loop={true}
           autoplay={{ delay: 5000 }}
           className="h-full text-center leading-[48px]"
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
         >
           <SwiperSlide>
             <span>Free shipping on orders over $200</span>

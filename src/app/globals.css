@@ -25,3 +25,9 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer base {
+  h2 {
+    @apply text-[21px] font-semibold text-gray-900;
+  }
+}
