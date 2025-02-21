@@ -3,6 +3,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import { NavItem } from "./model";
 import { IoPersonOutline } from "react-icons/io5";
 import { RiShoppingBagLine } from "react-icons/ri";
+import { CiMenuBurger } from "react-icons/ci";
 import { CiSearch } from "react-icons/ci";
 import clsx from "clsx";
 import { throttleFtn } from "@/utils/throttle";
@@ -79,19 +80,22 @@ const HeaderNav: FC = () => {
         morning
       </h1>
       <nav
-        className={`flex items-center order-2 space-x-4 h-8 ${
-          shouldWrap ? "justify-between h-[80px]" : "initial"
+        className={`flex items-center order-2 space-x-4 h-8 w-full sm:w-auto ${
+          shouldWrap ? "justify-between h-[80px]" : "justify-between sm:initial"
         }`}
       >
-        <div>United States (USD$)</div>
+        <div className="hidden sm:block">United States (USD$)</div>
+        <div className="block sm:hidden">
+          <CiMenuBurger />
+        </div>
         <div className="flex items-center space-x-4">
-          <IoPersonOutline size={20} />
+          <IoPersonOutline className="hidden sm:block" size={20} />
           <RiShoppingBagLine size={20} />
           <CiSearch size={20} />
         </div>
       </nav>
       <nav
-        className={`flex space-x-4 transition-all duration-300 ${
+        className={`flex space-x-4 transition-all duration-300 hidden sm:block ${
           shouldWrap ? "w-full justify-center items-center mt-2" : "order-1"
         }`}
         ref={leftNavRef}

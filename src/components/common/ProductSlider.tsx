@@ -4,7 +4,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { ProductCardInfo, ProductInfo } from "./model";
 
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const ProductSlider: FC<Props> = ({ productList }) => {
-  const [products, setProducts] = useState<ProductCardInfo[]>(productList);
+  const [products, setProducts] = useState<ProductCardInfo[]>([]);
 
   const onActiveIndex = (productIndex: number, colorIndex: number) => {
     const newProductList = products.map((product, index) => {
@@ -24,6 +24,12 @@ const ProductSlider: FC<Props> = ({ productList }) => {
     });
     setProducts(newProductList);
   };
+
+  useEffect(() => {
+    if (productList.length > 0) {
+      setProducts(productList);
+    }
+  }, [productList]);
 
   return (
     <div className="w-full p-5">
@@ -39,10 +45,10 @@ const ProductSlider: FC<Props> = ({ productList }) => {
       >
         {products.map((product, productIndex) => (
           <SwiperSlide key={productIndex} className="w-full">
-            <div className="relative w-full aspect-[16/9]">
+            <div className="relative w-full aspect-[1/1]">
               <Image
                 // src={`/images/${product.image}`}
-                src={`https://picsum.photos/1920/1080?random=${productIndex}`}
+                src={`https://picsum.photos/1920/1920?random=${productIndex}`}
                 alt={product.name}
                 layout="fill"
                 objectFit="cover"

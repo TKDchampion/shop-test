@@ -163,17 +163,12 @@ const Collections: FC = () => {
   ]);
 
   const onChangeTab = (index: number) => {
-    // const newList = tabList.map((tab, i) => ({
-    //   ...tab,
-    //   active: i === index,
-    // }));
     setActiveIndex(index);
-    // setTableList(newList);
   };
 
   return (
     <div className="pb-16">
-      <div className="w-[440px] m-auto text-center">
+      <div className="w-[390px] m-auto text-center">
         <h2 className="text-black">Collections</h2>
         <div className="border-b-2 border-primary w-9 h-1 m-auto mt-2" />
       </div>
