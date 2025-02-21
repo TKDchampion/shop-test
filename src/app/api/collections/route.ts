@@ -35,7 +35,7 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json(result, { status: 200 });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to read data" }, { status: 500 });
   }
 }

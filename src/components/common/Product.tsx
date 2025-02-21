@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { FC } from "react";
 import { ProductCardInfo } from "./model";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface Props {
   product: ProductCardInfo;

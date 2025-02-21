@@ -20,7 +20,7 @@ const Collections: FC<Props> = ({ collections }) => {
     if (collections?.length > 0) {
       setTabList(collections);
     }
-  }, []);
+  }, [collections]);
 
   return (
     <div className="pb-16">

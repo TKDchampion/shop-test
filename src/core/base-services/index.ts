@@ -2,87 +2,35 @@ import fetchInstance from "./fetch-instance";
 import { ApiConfig } from "./model";
 
 export default class BaseServices {
-  get = async (apiconfig: ApiConfig) => {
-    return await getCall(apiconfig);
+  get = async <T>(apiconfig: ApiConfig): Promise<T> => {
+    return getCall<T>(apiconfig);
   };
 
-  post = async (apiconfig: ApiConfig) => {
-    return await postCall(apiconfig);
+  post = async <T>(apiconfig: ApiConfig): Promise<T> => {
+    return postCall<T>(apiconfig);
   };
 
-  put = async (apiconfig: ApiConfig) => {
-    return await putCall(apiconfig);
+  put = async <T>(apiconfig: ApiConfig): Promise<T> => {
+    return putCall<T>(apiconfig);
   };
 
-  delete = async (apiconfig: ApiConfig) => {
-    return await deleteCall(apiconfig);
+  delete = async <T>(apiconfig: ApiConfig): Promise<T> => {
+    return deleteCall<T>(apiconfig);
   };
 }
 
-const getCall = (apiconfig: ApiConfig): Promise<any> => {
-  return new Promise((resolve, reject) => {
-    fetchInstance(apiconfig, "GET", apiconfig.renderType)
-      .then(
-        (response) => {
-          resolve(response);
-        },
-        (err) => {
-          reject(err);
-        }
-      )
-      .catch((err) => {
-        reject(err);
-      });
-  });
+const getCall = async <T>(apiconfig: ApiConfig): Promise<T> => {
+  return fetchInstance<T>(apiconfig, "GET", apiconfig.renderType);
 };
 
-const postCall = (apiconfig: ApiConfig): Promise<any> => {
-  return new Promise((resolve, reject) => {
-    fetchInstance(apiconfig, "POST")
-      .then(
-        (response) => {
-          resolve(response);
-        },
-        (err) => {
-          reject(err);
-        }
-      )
-      .catch((err) => {
-        reject(err);
-      });
-  });
+const postCall = async <T>(apiconfig: ApiConfig): Promise<T> => {
+  return fetchInstance<T>(apiconfig, "POST");
 };
 
-const putCall = (apiconfig: ApiConfig): Promise<any> => {
-  return new Promise((resolve, reject) => {
-    fetchInstance(apiconfig, "PUT")
-      .then(
-        (response) => {
-          resolve(response);
-        },
-        (err) => {
-          reject(err);
-        }
-      )
-      .catch((err) => {
-        reject(err);
-      });
-  });
+const putCall = async <T>(apiconfig: ApiConfig): Promise<T> => {
+  return fetchInstance<T>(apiconfig, "PUT");
 };
 
-const deleteCall = (apiconfig: ApiConfig): Promise<any> => {
-  return new Promise((resolve, reject) => {
-    fetchInstance(apiconfig, "DELETE")
-      .then(
-        (response) => {
-          resolve(response);
-        },
-        (err) => {
-          reject(err);
-        }
-      )
-      .catch((err) => {
-        reject(err);
-      });
-  });
+const deleteCall = async <T>(apiconfig: ApiConfig): Promise<T> => {
+  return fetchInstance<T>(apiconfig, "DELETE");
 };

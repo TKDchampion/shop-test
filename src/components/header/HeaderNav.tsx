@@ -7,7 +7,7 @@ import { CiMenuBurger } from "react-icons/ci";
 import { CiSearch } from "react-icons/ci";
 import clsx from "clsx";
 import { throttleFtn } from "@/utils/throttle";
-import { redirect, usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const HeaderNav: FC = () => {
   const pathname = usePathname();

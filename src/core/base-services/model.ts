@@ -1,14 +1,12 @@
 export interface ApiConfig {
   baseConfig?: BaseConfig;
-  body?: Record<string, any> | FormData;
+  body?: Record<string, unknown> | FormData;
   url: string;
   renderType?: RenderType;
   disabledErrorAlert?: boolean;
 }
 
-type RequestHeaders = {
-  [key: string]: any;
-};
+type RequestHeaders = Record<string, string>;
 
 interface BaseConfig {
   headers?: RequestHeaders;
@@ -22,7 +20,7 @@ export interface FetchConfig {
   headers: RequestHeaders;
   body?: string | FormData;
   cache?: RequestCache;
-  next?: {};
+  next?: object;
 }
 
 export type RenderType = "SSR" | "SSG" | "ISR";

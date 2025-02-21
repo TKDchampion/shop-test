@@ -1,6 +1,4 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
 import { readProductsJSON } from "@/utils/readProductsJSON";
 import { ProductInfo } from "@/types/product";
 
@@ -27,7 +25,7 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json(product, { status: 200 });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to read data" }, { status: 500 });
   }
 }
