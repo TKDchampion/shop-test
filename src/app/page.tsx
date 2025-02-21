@@ -1,11 +1,15 @@
 import Banner from "@/components/home/Banner";
 import Collections from "@/components/home/Collections";
+import { getAllCollectionsByLimitApi } from "@/services/collection";
 
-export default function Home() {
+export default async function Home() {
+  const collections = await getAllCollectionsByLimitApi(3);
+  console.log(collections);
+
   return (
     <div className="w-full bg-white">
       <Banner />
-      <Collections />
+      <Collections collections={collections} />
     </div>
   );
 }

@@ -5,7 +5,7 @@ const Banner: FC = () => {
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center bg-black mb-16">
       <Image
-        src="/images/banner.png"
+        src="/banner.png"
         alt="Random Fullscreen Image"
         layout="fill"
         objectFit="cover"

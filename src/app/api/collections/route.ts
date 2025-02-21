@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { CollectionResponse, ProductInfo } from "../model";
 import { readProductsJSON } from "@/utils/readProductsJSON";
+import { CollectionResponse, ProductInfo } from "@/types/product";
 
 export async function GET(req: Request) {
   try {

@@ -1,4 +1,4 @@
-import { ProductInfo } from "@/app/api/model";
+import { ProductInfo } from "@/types/product";
 import fs from "fs";
 import path from "path";
 

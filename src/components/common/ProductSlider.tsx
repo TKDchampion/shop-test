@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { ProductCardInfo } from "./model";
-import { ProductInfo } from "@/app/api/model";
+import { ProductInfo } from "@/types/product";
 
 interface Props {
   productList: ProductInfo[];
@@ -27,7 +27,7 @@ const ProductSlider: FC<Props> = ({ productList }) => {
   };
 
   useEffect(() => {
-    if (productList.length > 0) {
+    if (productList?.length > 0) {
       setProducts(productList);
     }
   }, [productList]);
@@ -48,8 +48,8 @@ const ProductSlider: FC<Props> = ({ productList }) => {
           <SwiperSlide key={productIndex} className="w-full">
             <div className="relative w-full aspect-[1/1]">
               <Image
-                // src={`/images/${product.image}`}
-                src={`https://picsum.photos/1920/1920?random=${productIndex}`}
+                src={`/images/${product.image}`}
+                // src={`https://picsum.photos/1920/1920?random=${productIndex}`}
                 alt={product.name}
                 layout="fill"
                 objectFit="cover"

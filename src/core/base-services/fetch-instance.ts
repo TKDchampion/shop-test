@@ -21,7 +21,7 @@ export default async function fetchInstance(
 
   const baseURL = apiconfig.baseConfig?.baseURL
     ? apiconfig.baseConfig.baseURL
-    : process.env["NEXT_PUBLIC_URL"];
+    : process.env["NEXT_PUBLIC_API_URL"];
 
   const fetchConfig: FetchConfig = {
     method: method,

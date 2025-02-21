@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import { ProductInfo } from "../model";
 import { readProductsJSON } from "@/utils/readProductsJSON";
+import { ProductInfo } from "@/types/product";
 
 export async function GET(req: Request) {
   try {
