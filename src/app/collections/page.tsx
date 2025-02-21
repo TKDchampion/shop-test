@@ -11,14 +11,15 @@ export default async function Collections() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
         {collections.map((category, index) => (
-          <div
+          <a
             key={index}
-            className={`relative group cursor-pointer overflow-hidden bg-slate-500/50 aspect-square flex items-center justify-center transition-transform duration-300 group-hover:scale-105`}
+            href={`/collections/${encodeURIComponent(category.collection)}`}
+            className="relative group cursor-pointer overflow-hidden bg-slate-500/50 aspect-square flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
           >
             <div className="absolute inset-0 flex items-center justify-center bg-black/30 text-white text-lg font-bold transition-opacity duration-300 group-hover:bg-black/50">
               {category.collection}
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>

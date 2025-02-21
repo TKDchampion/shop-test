@@ -1,8 +1,8 @@
 "use client";
 import { FC, useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperClass } from "swiper";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -21,7 +21,7 @@ const HeaderSwiper: FC = () => {
           <FaChevronLeft size={24} />
         </div>
         <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
+          modules={[Autoplay]}
           slidesPerView={1}
           loop={true}
           autoplay={{ delay: 5000 }}

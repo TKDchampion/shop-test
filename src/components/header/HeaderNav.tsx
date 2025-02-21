@@ -109,11 +109,13 @@ const HeaderNav: FC = () => {
         {NavItem.map((navItem, index) => {
           return (
             <a
-              href="#"
+              href={navItem.key}
               key={index}
-              className={`${navItem === "SALE" ? "text-red-500" : "inherit"}`}
+              className={`${
+                navItem.name === "SALE" ? "text-red-500" : "inherit"
+              }`}
             >
-              {navItem}
+              {navItem.name}
             </a>
           );
         })}

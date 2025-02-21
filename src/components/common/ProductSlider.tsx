@@ -1,15 +1,15 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperClass } from "swiper";
-import { Navigation, Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { FC, useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { ProductCardInfo } from "./model";
 import { ProductInfo } from "@/types/product";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Product from "./Product";
 
 interface Props {
   productList: ProductInfo[];
@@ -45,50 +45,24 @@ const ProductSlider: FC<Props> = ({ productList }) => {
           <FaChevronLeft size={32} className="mt-1 ml-1" />
         </div>
         <Swiper
-          modules={[Navigation, Pagination]}
+          modules={[Pagination]}
           pagination={{ clickable: true, type: "fraction" }}
           spaceBetween={40}
           breakpoints={{
             768: { slidesPerView: 3 },
           }}
-          className="w-full"
+          className="w-full text-black"
           style={{ paddingBottom: 32 }}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
         >
           {products.map((product, productIndex) => (
             <SwiperSlide key={productIndex} className="w-full">
-              <div className="relative w-full aspect-[1/1]">
-                <Image
-                  src={`/images/${product.image}`}
-                  alt={product.name}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  objectFit="cover"
-                  priority
-                />
-              </div>
-              <div>{product.name}</div>
-              <div>{product.price}</div>
-              <div className="flex justify-start mt-1">
-                {product.color.map((color, colorIndex) => (
-                  <button
-                    key={colorIndex}
-                    onClick={() => onActiveIndex(productIndex, colorIndex)}
-                    className="w-5 h-5 flex items-center justify-center border-2 rounded-full transition"
-                    style={{
-                      borderColor:
-                        product.activeIndex === colorIndex
-                          ? color
-                          : "transparent",
-                    }}
-                  >
-                    <span
-                      className="w-3 h-3 rounded-full transition"
-                      style={{ backgroundColor: color }}
-                    />
-                  </button>
-                ))}
-              </div>
+              <Product
+                product={product}
+                handleClick={(colorIndex: number) =>
+                  onActiveIndex(productIndex, colorIndex)
+                }
+              />
             </SwiperSlide>
           ))}
         </Swiper>

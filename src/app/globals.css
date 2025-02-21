@@ -31,3 +31,14 @@ body {
     @apply text-[21px] font-semibold text-gray-900;
   }
 }
+
+/* Hide scrollbar in WebKit browsers (Chrome, Safari) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar in Firefox */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* For Internet Explorer */
+}

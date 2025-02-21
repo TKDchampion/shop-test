@@ -7,6 +7,7 @@ const baseServices = new BaseServices();
 export const getAllCollectionsApi = (): Promise<CollectionResponse[]> => {
   const config: ApiConfig = {
     url: "collections",
+    renderType: "SSR",
   };
 
   return baseServices.get(config);
@@ -17,7 +18,7 @@ export const getAllCollectionsByLimitApi = (
 ): Promise<CollectionResponse[]> => {
   const config: ApiConfig = {
     url: `collections?limit=${limit}`,
-    renderType: "SSR",
+    renderType: "ISR",
   };
 
   return baseServices.get(config);
