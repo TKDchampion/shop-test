@@ -6,7 +6,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { FC, useEffect, useState } from "react";
 import Image from "next/image";
-import { ProductCardInfo, ProductInfo } from "./model";
+import { ProductCardInfo } from "./model";
+import { ProductInfo } from "@/app/api/model";
 
 interface Props {
   productList: ProductInfo[];

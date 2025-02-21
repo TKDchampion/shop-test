@@ -1,11 +1,4 @@
-export interface ProductInfo {
-  name: string;
-  price: number;
-  color: string[];
-  size: string[];
-  image: string;
-  collection: string;
-}
+import { ProductInfo } from "@/app/api/model";
 
 export type CollectionsInfo = ProductInfo[];
 
