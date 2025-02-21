@@ -4,11 +4,15 @@ import { NavItem } from "./model";
 import { IoPersonOutline } from "react-icons/io5";
 import { RiShoppingBagLine } from "react-icons/ri";
 import { CiSearch } from "react-icons/ci";
+import clsx from "clsx";
+import { throttleFtn } from "@/utils/throttle";
 
 const HeaderNav: FC = () => {
   const logoRef = useRef<HTMLDivElement | null>(null);
   const leftNavRef = useRef<HTMLDivElement | null>(null);
   const [shouldWrap, setShouldWrap] = useState(false);
+  const [isFixed, setIsFixed] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
     let initialNavRight = 0;
@@ -37,11 +41,36 @@ const HeaderNav: FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = throttleFtn(() => {
+      const scrollY = window.scrollY;
+      setIsFixed(scrollY > 48);
+
+      if (scrollY > lastScrollY + 50) {
+        setIsHidden(true);
+      } else if (scrollY < lastScrollY - 20) {
+        setIsHidden(false);
+      }
+
+      lastScrollY = scrollY;
+    }, 10);
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <main
-      className={`min-h-[87px] w-full px-[30px] absolute z-10 text-white ${
-        shouldWrap ? "block" : "flex flex-nowrap justify-between items-center"
-      } hover:bg-white hover:text-black border-b border-gray-300`}
+      className={clsx(
+        "min-h-[87px] w-full px-[30px] z-50 border-b border-gray-300",
+        "transition-transform duration-300 ease-in-out",
+        "hover:bg-white hover:text-black",
+        isFixed ? "fixed top-0 bg-white text-black" : "absolute text-white",
+        shouldWrap ? "block" : "flex flex-nowrap justify-between items-center",
+        isHidden ? "-translate-y-full" : "translate-y-0"
+      )}
     >
       <h1
         ref={logoRef}
