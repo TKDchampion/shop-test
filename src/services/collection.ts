@@ -4,7 +4,7 @@ import { CollectionResponse } from "@/types/product";
 
 const baseServices = new BaseServices();
 
-export const getAllCollectionsApi = (): Promise<CollectionResponse> => {
+export const getAllCollectionsApi = (): Promise<CollectionResponse[]> => {
   const config: ApiConfig = {
     url: "collections",
   };

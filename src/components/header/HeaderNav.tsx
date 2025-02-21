@@ -7,8 +7,10 @@ import { CiMenuBurger } from "react-icons/ci";
 import { CiSearch } from "react-icons/ci";
 import clsx from "clsx";
 import { throttleFtn } from "@/utils/throttle";
+import { usePathname } from "next/navigation";
 
 const HeaderNav: FC = () => {
+  const pathname = usePathname();
   const logoRef = useRef<HTMLDivElement | null>(null);
   const leftNavRef = useRef<HTMLDivElement | null>(null);
   const [shouldWrap, setShouldWrap] = useState(false);
@@ -65,12 +67,16 @@ const HeaderNav: FC = () => {
   return (
     <main
       className={clsx(
-        "min-h-[87px] w-full px-[30px] z-50 border-b border-gray-300",
+        "min-h-[87px] w-full px-[30px] z-50",
         "transition-transform duration-300 ease-in-out",
         "hover:bg-white hover:text-black",
-        isFixed ? "fixed top-0 bg-white text-black" : "absolute text-white",
         shouldWrap ? "block" : "flex flex-nowrap justify-between items-center",
-        isHidden ? "-translate-y-full" : "translate-y-0"
+        isHidden ? "-translate-y-full" : "translate-y-0",
+        isFixed
+          ? "fixed top-0 bg-white text-black"
+          : pathname === "/"
+          ? "absolute text-white bg-transparent border-b border-gray-300"
+          : "absolute text-black bg-white"
       )}
     >
       <h1
