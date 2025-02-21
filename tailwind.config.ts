@@ -8,6 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        "pulse-border": "pulseBorder 1.5s infinite ease-out",
+      },
+      keyframes: {
+        pulseBorder: {
+          "0%": { transform: "scale(1)", opacity: "1" },
+          "100%": { transform: "scale(1.5)", opacity: "0" },
+        },
+      },
       fontSize: {
         h2: "21px",
       },
