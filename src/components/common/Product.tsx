@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { FC } from "react";
 import { ProductCardInfo } from "./model";
+import { redirect, useRouter } from "next/navigation";
 
 interface Props {
   product: ProductCardInfo;
@@ -9,8 +10,13 @@ interface Props {
 }
 
 const Product: FC<Props> = ({ product, handleClick }) => {
+  const route = useRouter();
+
   return (
-    <div className="w-full text-black">
+    <div
+      className="w-full text-black cursor-pointer"
+      onClick={() => route.push(`/product/${product.name}`)}
+    >
       <div className="relative w-full aspect-[1/1] group transition-transform duration-300 hover:scale-95">
         <Image
           src={`/images/${product.image}`}

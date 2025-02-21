@@ -7,7 +7,7 @@ import { CiMenuBurger } from "react-icons/ci";
 import { CiSearch } from "react-icons/ci";
 import clsx from "clsx";
 import { throttleFtn } from "@/utils/throttle";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname, useRouter } from "next/navigation";
 
 const HeaderNav: FC = () => {
   const pathname = usePathname();
@@ -16,6 +16,7 @@ const HeaderNav: FC = () => {
   const [shouldWrap, setShouldWrap] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const route = useRouter();
 
   useEffect(() => {
     let initialNavRight = 0;
@@ -80,8 +81,9 @@ const HeaderNav: FC = () => {
       )}
     >
       <h1
+        onClick={() => route.push("/")}
         ref={logoRef}
-        className="absolute left-1/2 transform -translate-x-1/2 text-2xl font-bold h-[80px] leading-[80px]"
+        className="cursor-pointer absolute left-1/2 transform -translate-x-1/2 text-2xl font-bold h-[80px] leading-[80px]"
       >
         morning
       </h1>
@@ -109,7 +111,7 @@ const HeaderNav: FC = () => {
         {NavItem.map((navItem, index) => {
           return (
             <a
-              href={navItem.key}
+              href={`/${navItem.key}`}
               key={index}
               className={`${
                 navItem.name === "SALE" ? "text-red-500" : "inherit"
