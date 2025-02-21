@@ -25,11 +25,13 @@ export async function GET(req: Request) {
     );
 
     const limitNumber = limit ? parseInt(limit, 10) : null;
+    result = result.map(({ collection, products }) => ({
+      collection,
+      products: products,
+    }));
+
     if (limitNumber && !isNaN(limitNumber)) {
-      result = result.map(({ collection, products }) => ({
-        collection,
-        products: products.slice(0, limitNumber),
-      }));
+      result = result.slice(0, limitNumber);
     }
 
     return NextResponse.json(result, { status: 200 });

@@ -36,7 +36,7 @@ const ProductSlider: FC<Props> = ({ productList }) => {
     <div className="w-full p-5">
       <Swiper
         modules={[Navigation, Pagination]}
-        pagination={{ clickable: true }}
+        pagination={{ clickable: true, type: "fraction" }}
         spaceBetween={40}
         breakpoints={{
           768: { slidesPerView: 3 },
@@ -49,7 +49,6 @@ const ProductSlider: FC<Props> = ({ productList }) => {
             <div className="relative w-full aspect-[1/1]">
               <Image
                 src={`/images/${product.image}`}
-                // src={`https://picsum.photos/1920/1920?random=${productIndex}`}
                 alt={product.name}
                 layout="fill"
                 objectFit="cover"
