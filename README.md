@@ -1,99 +1,122 @@
-# Frontend Interview Challenge
+# Abconvert-shop
 
-![ecommerce_github_banner](https://github.com/user-attachments/assets/3018c781-0969-45a1-b8bb-3f638aa4260d)
+Demo: https://shop-test-alpha.vercel.app/
 
-## Requirements
+This project did not focus heavily on UI design but primarily emphasized:
 
-- You must use Next.js and Tailwind CSS to build the project.
+- Frontend framework configuration
+- Fetch API encapsulation for streamlined data fetching
+- Various rendering strategies (SSG, SSR, CSR, ISR) based on different frontend scenarios
+- Implementation of two backend APIs for integration
+- Component structure: Proper separation of pages and shared components
+- Application of Tailwind CSS for styling
+- Frontend performance optimization: Using throttle to reduce unnecessary re-renders
+- Deployment: Utilizing Docker Compose for containerized deployment
 
-- You may use any additional libraries, **but UI libraries that do not integrate with Tailwind CSS are not allowed.**
+## Structure Overview
 
-- The project should follow the same theme as the [Venue theme](https://venue-theme-morning.myshopify.com/).
+```javascript
+src/
+│── app/                  # Main application routes and pages
+│   ├── api/              # API routes for server-side (Backend)
+│   ├── collections/      # Collections-related pages
+│   ├── product/          # Product-related pages
+│   ├── globals.css       # Global CSS styles
+│   ├── layout.tsx        # Layout wrapper for the app
+│   ├── page.tsx          # Home
+│
+│── components/           # UI components
+│   ├── collections/      # Collections reusable components
+│   ├── common/           # Common components
+│   ├── footer/           # Footer components
+│   ├── header/           # Header components
+│   ├── home/             # Home page components
+│
+│── core/base-services/   # Core services
+│   ├── fetch-instance.ts # API request instance setup (Encapsulation)
+│   ├── index.ts
+│   ├── model.ts
+│
+│── services/             # Fetch api services
+│── types/                # Type common definitions
+│── utils/                # Utility functions
+│
+│── .env                  # Environment variables
+```
 
-  - Images are not important—you may use placeholder images. however, the product page should have a product image which we have provided in the assets folder.
+## base-services
 
-- Product data will be provided in the assets folder.
+This project provides a reusable fetchInstance function to standardize API requests using fetch. The BaseServices class simplifies API interactions by encapsulating common HTTP methods (GET, POST, PUT, DELETE). This allows developers to focus on request configurations rather than implementation details.
 
-- While this is a frontend-focused challenge, you should write backend code if necessary (e.g., for SSR/SSG or handling API requests).
+- HttpDefaultOptions
+  - baseApiURL (string): The default domain for API requests.
+  - headers (Record<string, string>): Default headers applied to all requests, such as authorization tokens or content types.
+- HttpRequestOptions
+  - baseURL (string, optional): Overrides baseApiURL to use a different API domain for a specific request.
+  - headers (Record<string, string>, optional): Custom headers that merge with the default headers.
+  - body (Record<string, unknown> | FormData, optional): The request payload for POST and PUT requests, supporting both JSON and FormData.
+  - renderType ("SSR" | "SSG" | "ISR", optional): Defines caching behavior for the request.
+    - "SSR": No caching (cache: "no-store").
+    - "SSG": Static site generation (cache: "force-cache").
+    - "ISR": Incremental static regeneration (next: { revalidate: 5 }).
 
-- Deploy the project to a publicly accessible URL.
+* Example
 
-- Extra features that go beyond the requirements and impress us are encouraged!
+  ```javascript
+  import BaseServices from "@/core/base-services";
 
-## Project Description
+  const baseServices = new BaseServices();
 
-This is a minimalistic e-commerce project built using Next.js and Tailwind CSS.
+  export const getAllCollectionsApi = (): Promise<Response> => {
+    const apiConfig: ApiConfig = {
+      url: "path",
+      baseURL: "https://custom.api.com", // Overrides default baseApiURL
+      headers: {
+        "X-Custom-Header": "CustomValue",
+      },
+      renderType:  ("SSR" | "SSG" | "ISR", optional):,
+    };
 
-### Task 1: E-Commerce Website
+    return baseServices.get(apiConfig);
+  };
 
-Build an e-commerce website that includes the following pages:
+  ```
 
-- [Home page](https://venue-theme-morning.myshopify.com/)
-- [Product page](https://venue-theme-morning.myshopify.com/collections/accessories/products/copy-of-drift-hat)
-- [Collection page](https://venue-theme-morning.myshopify.com/collections/accessories)
+## API (Backend)
 
-### Bonus Task: A/B Test Recommendation Engine
+- Get Product Collections
+  - Method: GET
+  - Path: /api/collections
+  - Query:
+    - limit (number, optional) - Limits the number of collections returned.
+- Product by Name
+  - Method: GET
+  - Path: /api/product
+  - Query:
+    - name (string, required) - The name of the product to retrieve.
 
-Create an A/B test recommendation engine that suggests the best recommendations for users.
+## Build & Run
 
-- The implementation should replicate the functionality of [Weblens AI](https://weblens.ai/).
+### .env
 
-- You may implement this using a CLI tool, scripts, APIs, or any other method.
+```
+NEXT_PUBLIC_API_URL=https://shop-test-alpha.vercel.app/api
+```
 
-We highly recommend you complete this task.
+### Install
 
-## Evaluation criteria
+```
+npm install
+```
 
-### Requirement Fulfillment
+### Start
 
-- Does the project meet all the listed requirements?
-- Are there any extra features that go above and beyond what we asked for?
+```
+npm run dev
+```
 
-### Code readability
+## Docker
 
-- Are variable and function names meaningful and descriptive?
-- Are naming conventions consistent throughout the project?
-- Are comments clear and useful?
-- Is the code properly formatted and structured?
-
-### Code quality
-
-- Are best practices followed in the project structure?
-- Is the code efficient and maintainable?
-- Are performance optimizations applied where necessary?
-- Is the styling clean and consistent?
-- Is the documentation clear and well-written?
-
-### Code maintainability
-
-- Does the project follow a consistent style guide?
-- Is there clear documentation explaining the code?
-
-### Code performance
-
-- Does the project pass performance tests? (You can check using [PageSpeed Insights](https://pagespeed.web.dev/))
-- While there is no minimum performance score, you should optimize the website as much as possible.
-
-### Documentation
-
-- Is there a well-structured README file?
-- Does the documentation explain setup, usage, and key functionalities?
-- Are installation and deployment instructions clear?
-- Are API endpoints (if any) well-documented?
-
-### Communication
-
-- Can you explain your project clearly and concisely?
-- Are questions or clarifications raised in a timely and professional manner?
-- Are interactions with the point of contact clear and effective?
-
-## Submission
-
-Please submit the following to talent@abconvert.io.
-
-1. A public GitHub repository with your project code.
-2. A live URL.
-3. A demo video showcasing your project
-
-There is no strict deadline for this project; please submit it when you believe it is ready for review.
-Good luck :)
+```
+docker-compose up
+```
