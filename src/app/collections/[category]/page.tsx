@@ -1,4 +1,4 @@
-import CollectionScroll from "@/components/collections/CollectionSwiper";
+import CollectionScroll from "@/components/collections/CollectionScroll";
 import Product from "@/components/common/Product";
 import { getAllCollectionsApi } from "@/services/collection";
 

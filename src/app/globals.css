@@ -42,3 +42,7 @@ body {
   scrollbar-width: none;
   -ms-overflow-style: none; /* For Internet Explorer */
 }
+
+.swiper-pagination-bullet-active {
+  background-color: #997a3b !important; /* Active bullet color */
+}
