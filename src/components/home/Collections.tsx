@@ -23,7 +23,7 @@ const Collections: FC<Props> = ({ collections }) => {
   }, [collections]);
 
   return (
-    <div className="py-16">
+    <div className="pt-16 pb-8">
       <div className="w-[390px] m-auto text-center">
         <h2 className="text-black">Collections</h2>
         <div className="border-b-2 border-primary w-9 h-1 m-auto mt-2" />
