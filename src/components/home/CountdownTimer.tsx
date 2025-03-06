@@ -16,6 +16,7 @@ const CountdownTimer: FC = () => {
     }, 1000);
 
     return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const hours = String(Math.floor(timeLeft / (1000 * 60 * 60))).padStart(
@@ -31,17 +32,17 @@ const CountdownTimer: FC = () => {
   );
 
   return (
-    <div className="flex mt-4 items-center space-x-4 text-white font-bold text-6xl">
+    <div className="flex mt-4 items-center space-x-4 text-white font-bold text-3xl min-[440px]:text-6xl">
       <div className="text-center">
         <span>{hours}</span>
         <div className="text-sm font-medium tracking-wide">HOURS</div>
       </div>
-      <span className="text-6xl">:</span>
+      <span className="text-3xl	min-[440px]:text-6xl">:</span>
       <div className="text-center">
         <span>{minutes}</span>
         <div className="text-sm font-medium tracking-wide">MINUTES</div>
       </div>
-      <span className="text-6xl">:</span>
+      <span className="text-3xl	min-[440px]:text-6xl">:</span>
       <div className="text-center">
         <span>{seconds}</span>
         <div className="text-sm font-medium tracking-wide">SECONDS</div>

@@ -10,41 +10,7 @@ import "swiper/css/pagination";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Button from "../common/Button";
 import clsx from "clsx";
-
-const Bannerlist = [
-  {
-    title: "Less but better",
-    subTitle:
-      "This simple phrase is one of our guiding principles. Focus on the most important elements of each garment and let go of everything superfluous.",
-    position: "justify-start",
-    textAlign: "text-left",
-    img: "/banner.jpg",
-  },
-  {
-    title: "Less harm",
-    subTitle:
-      "We’re continually pushing to reduce our footprint by choosing recycled or natural fibres and non-toxic natural dye processes.",
-    position: "justify-start",
-    textAlign: "text-left",
-    img: "/banner.jpg",
-  },
-  {
-    title: "Be responsible",
-    subTitle:
-      "As a small growing company, it’s not always easy, but we will always seek the most socially responsible manufacturing options.",
-    position: "justify-center",
-    textAlign: "text-center",
-    img: "/banner.jpg",
-  },
-  {
-    title: "Timeless style",
-    subTitle:
-      "We are the opposite of fast fashion. We take a thoughtful approach to the entire lifecycle of our products.",
-    position: "justify-end",
-    textAlign: "text-right",
-    img: "/banner.jpg",
-  },
-];
+import { Bannerlist } from "./model";
 
 const Banner: FC = () => {
   const swiperRef = useRef<SwiperClass | null>(null);
