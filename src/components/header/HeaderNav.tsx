@@ -104,7 +104,9 @@ const HeaderNav: FC = () => {
       </nav>
       <nav
         className={`flex space-x-4 transition-all duration-300 hidden sm:block ${
-          shouldWrap ? "w-full justify-center items-center mt-2" : "order-1"
+          shouldWrap
+            ? "w-full justify-center items-center my-2 text-center"
+            : "order-1"
         }`}
         ref={leftNavRef}
       >

@@ -26,7 +26,7 @@ export default async function Collections({ params }: Props) {
         {collections[categoryIndex]?.products.map((product, index) => (
           <a
             key={index}
-            href={`/collections/${encodeURIComponent(product.name)}`}
+            href={`/product/${encodeURIComponent(product.name)}`}
             className="relative group cursor-pointer overflow-hidden flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
           >
             <Product product={product} />

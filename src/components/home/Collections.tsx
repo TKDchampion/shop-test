@@ -34,7 +34,7 @@ const Collections: FC<Props> = ({ collections }) => {
             <button
               key={index}
               role="tab"
-              className={`mx-2 text-h2 ${
+              className={`mx-2 ${
                 activeIndex === index
                   ? "text-black border-b-2 border-black"
                   : "text-gray-600"
